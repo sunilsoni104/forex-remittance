@@ -1733,6 +1733,15 @@ label {
   opacity: 0.8;
 }
 
+.secure-payment-features .row.cus-mar {
+  display: flex;
+  align-items: stretch;
+}
+
+.secure-payment-features .row.cus-mar .col-xl-4 {
+  display: flex;
+}
+
 .feature-card {
   background-color: var(--bs-white);
   border-radius: 20px;
@@ -1743,6 +1752,11 @@ label {
   margin-bottom: 30px;
   position: relative;
   z-index: 2;
+  min-width: 280px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .feature-card:hover {
@@ -1792,6 +1806,28 @@ label {
   color: var(--para-color);
   opacity: 0.8;
   line-height: 1.6;
+}
+
+/* Responsive styles for equal height cards */
+@media (max-width: 767px) {
+  .secure-payment-features .row.cus-mar {
+    display: block;
+  }
+  .secure-payment-features .row.cus-mar .col-xl-4 {
+    display: block;
+  }
+  .feature-card {
+    margin-bottom: 20px;
+    min-width: auto;
+    height: auto;
+  }
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+  }
+  .icon-circle i {
+    font-size: 24px;
+  }
 }
 
 
