@@ -765,9 +765,9 @@ label {
   margin-left: 30px;
 }
 .header-section .navbar .navbar-collapse .right-area .login {
-  font-weight: 600;
-  font-size: 14px;
-  padding: 6px 12px;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 0 10px;
 }
 .header-section .navbar .navbar-collapse .right-area .cmn-btn {
   margin-left: 12px;
