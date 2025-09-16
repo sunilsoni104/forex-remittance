@@ -2,7 +2,7 @@
 <html lang="en">
 
 
-<!-- Mirrored from pixner.net/paylio/paylio-v1/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Sep 2025 06:43:54 GMT -->
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -150,102 +150,120 @@
 
                         <div class="col-xxl-4 col-xl-5 col-md-6">
                             <div class="card shadow-lg border-0 custom-transfer-card">
-                                <!-- Rate guarantee -->
-                                <div class="d-flex align-items-center justify-content-center mb-2 small text-muted">
-                                    <span class="me-2 fs-17">🔒</span>
-                                    <span class="fw-semibold fs-17">Rate guaranteed (24h)</span>
+                                <!-- Location -->
+                                <div class="mb-2">
+                                    <label class="form-label small text-dark">Location</label>
+                                    <select id="citySelect" class="form-select form-select-lg">
+                                        <option selected>Delhi</option>
+                                        <option>Mumbai</option>
+                                        <option>Bengaluru</option>
+                                        <option>Hyderabad</option>
+                                        <option>Chennai</option>
+                                    </select>
                                 </div>
-            
+
+                                <!-- Transfer from / to -->
+                                <div class="row g-2 mb-2">
+                                    <div class="col-6">
+                                        <label class="form-label small text-dark">Transfer From</label>
+                                        <select id="fromCurrency" class="form-select form-select-lg custom-amount-input">
+                                            <option value="INR" selected>🇮🇳 Indian Rupee (INR)</option>
+                                            <option value="USD">🇺🇸 US Dollar (USD)</option>
+                                            <option value="EUR">🇪🇺 Euro (EUR)</option>
+                                            <option value="GBP">🇬🇧 British Pound (GBP)</option>
+                                            <option value="AUD">🇦🇺 Australian Dollar (AUD)</option>
+                                            <option value="CAD">🇨🇦 Canadian Dollar (CAD)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label small text-dark">Transfer To</label>
+                                        <select id="toCurrency" class="form-select form-select-lg custom-amount-input">
+                                            <option value="USD" selected>🇺🇸 US Dollar (USD)</option>
+                                            <option value="EUR">🇪🇺 Euro (EUR)</option>
+                                            <option value="GBP">🇬🇧 British Pound (GBP)</option>
+                                            <option value="AUD">🇦🇺 Australian Dollar (AUD)</option>
+                                            <option value="CAD">🇨🇦 Canadian Dollar (CAD)</option>
+                                            <option value="INR">🇮🇳 Indian Rupee (INR)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <!-- Exchange rate -->
-                                <div class="text-center">
+                                <div class="text-center mb-2">
                                     <div class="badge bg-neutral text-dark py-1 px-2 rounded-5">
                                         <span id="exchangeRateText" class="small fw-semibold">1 USD = 88.07 INR</span>
                                     </div>
                                 </div>
-            
-                                <!-- You send exactly -->
+
+                                <!-- Amount to be sent / Amount in INR -->
+                                <div class="row g-2 mb-2">
+                                    <div class="col-6">
+                                        <label class="form-label small text-dark">Amount to be Sent</label>
+                                        <div class="position-relative">
+                                            <input type="text" value="500" id="amountToSend" class="form-control form-control-lg custom-amount-input pe-5">
+                                            <select id="sendCurrency" class="form-select custom-currency-select position-absolute top-50 end-0 translate-middle-y me-2">
+                                                <option value="USD" selected>USD</option>
+                                                <option value="EUR">EUR</option>
+                                                <option value="GBP">GBP</option>
+                                                <option value="AUD">AUD</option>
+                                                <option value="CAD">CAD</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label small text-dark">Amount in INR</label>
+                                        <input type="text" id="amountInInr" class="form-control form-control-lg custom-amount-input" value="44417" readonly>
+                                    </div>
+                                </div>
+
+                                <!-- Bank charges -->
                                 <div class="mb-2">
-                                    <label class="form-label small text-dark">You send exactly</label>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <div class="fw-semibold text-dark fs-17">Foreign bank charges USD <span id="bankFeeUsd">0</span>, to be paid by?</div>
+                                            <div class="small text-muted">Bank Fees : <span class="fw-semibold">USD <span id="bankFeeUsd2">0</span> | INR <span id="bankFeeInr">0</span></span></div>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <button id="payerSender" class="btn btn-outline-primary">Sender</button>
+                                            <button id="payerRecipient" class="btn btn-light">Recipient</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Receiving amount -->
+                                <div class="mb-2">
+                                    <label class="form-label small text-dark">Receiving amount</label>
                                     <div class="position-relative">
-                                        <input type="text" value="1000" id="sendAmount" class="form-control form-control-lg custom-amount-input pe-5">
-                                        <button id="currencySelectorBtn" data-currency-selector type="button" class="btn btn-white border position-absolute top-50 end-0 translate-middle-y me-2 d-flex align-items-center custom-currency-btn">
-                                            <span id="selectedCurrencyFlag" class="me-2 fs-17">🇮🇳</span>
-                                            <span id="selectedCurrencyCode" class="fw-semibold text-dark fs-17">INR</span>
-                                            <span class="ms-2 text-muted">▼</span>
-                                        </button>
-            
-                                        <!-- Currency dropdown -->
-                                        <div id="currencyDropdown" data-currency-dropdown class="d-none position-absolute dropdown-menu show custom-currency-dropdown">
-                                            <div class="px-3 py-2 border-bottom">
-                                                <div class="d-flex align-items-center border rounded px-2 py-1 bg-white">
-                                                    <span class="me-2">🔎</span>
-                                                    <input id="currencySearch" data-currency-search type="text" placeholder="Type a currency / country" class="form-control form-control-sm border-0 shadow-none">
-                                                </div>
-                                            </div>
-                                            <div id="currencyList" data-currency-list class="currency-list"></div>
-                                        </div>
+                                        <input type="text" value="500" id="receivingAmount" class="form-control form-control-lg custom-amount-input pe-5">
+                                        <select id="receiveCurrency" class="form-select custom-currency-select position-absolute top-50 end-0 translate-middle-y me-2">
+                                            <option value="USD" selected>USD</option>
+                                            <option value="EUR">EUR</option>
+                                            <option value="GBP">GBP</option>
+                                            <option value="AUD">AUD</option>
+                                            <option value="CAD">CAD</option>
+                                            <option value="INR">INR</option>
+                                        </select>
                                     </div>
                                 </div>
-            
-                                <!-- Recipient gets -->
-                                <div class="mb-2">
-                                    <label class="form-label small text-dark">Recipient gets</label>
-                                    <div class="position-relative">
-                                        <input type="text" value="11.36" id="receiveAmount" class="form-control form-control-lg custom-amount-input pe-5" readonly>
-                                        <button data-currency-selector type="button" class="btn btn-white border position-absolute top-50 end-0 translate-middle-y me-2 d-flex align-items-center custom-currency-btn">
-                                            <span class="me-2 fs-17" data-selected-flag>🇺🇸</span>
-                                            <span class="fw-semibold text-dark fs-17" data-selected-code>USD</span>
-                                            <span class="ms-2 text-muted">▼</span>
-                                        </button>
-                                        <div data-currency-dropdown class="d-none position-absolute dropdown-menu show custom-currency-dropdown">
-                                            <div class="px-3 py-2 border-bottom">
-                                                <div class="d-flex align-items-center border rounded px-2 py-1 bg-white">
-                                                    <span class="me-2">🔎</span>
-                                                    <input data-currency-search type="text" placeholder="Type a currency / country" class="form-control form-control-sm border-0 shadow-none" />
-                                                </div>
-                                            </div>
-                                            <div data-currency-list class="currency-list"></div>
-                                        </div>
+
+                                <!-- Total amount and extras -->
+                                <div class="p-3 bg-light rounded border mb-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="small text-muted">Total Amount</div>
+                                        <div class="h4 m-0 fw-bold text-dark">₹ <span id="totalAmountValue">0</span></div>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2 mt-2 small">
+                                        <span>🏷️</span>
+                                        <span>Get an effective rate of ₹<span id="effectiveRate">0</span></span>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2 mt-1 small text-muted">
+                                        <span>⏱️</span>
+                                        <span>Remittance orders are usually processed within 48 working hours.</span>
                                     </div>
                                 </div>
-            
-                                <!-- Paying with -->
-                                <div class="mb-2">
-                                    <label class="form-label small text-dark">Paying with</label>
-                                    <div class="d-flex align-items-center justify-content-between bg-light border rounded p-2">
-                                        <div class="d-flex align-items-center">
-                                            <span class="me-3 fs-4 fs-16">🏛️</span>
-                                            <span class="fw-semibold text-dark fs-17">Bank transfer</span>
-                                        </div>
-                                        <button class="btn btn-link p-0 text-muted">Change <span class="ms-1">▶</span></button>
-                                    </div>
-                                </div>
-            
-                                <!-- Fee breakdown -->
-                                <div class="border rounded p-2 mb-4 small bg-light">
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="text-muted fs-16">Bank transfer fee</span>
-                                        <span class="fw-semibold text-dark fs-16">20.00 INR</span>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="text-muted fs-16">Our fee</span>
-                                        <span class="fw-semibold text-dark fs-16">1,337 INR</span>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="text-muted fs-16">GST</span>
-                                        <span class="fw-semibold text-dark fs-16">381.57 INR</span>
-                                    </div>
-                                    <div class="pt-2 mt-2 border-top d-flex justify-content-between fw-bold">
-                                        <span class="text-dark fs-16">Total included fees (2.15%)</span>
-                                        <span class="text-dark fs-16">1,718.57 INR</span>
-                                    </div>
-                                </div>
-            
-                                <!-- Action buttons -->
-                                <div class="gap-2 d-flex">
-                                    <!-- <button class="btn btn-outline-secondary flex-fill py-2 fw-semibold">Compare fees</button> -->
-                                    <button class="btn cmn-btn flex-fill py-2 fw-semibold">Send money</button>
-                                </div>
+
+                                <!-- Action button -->
+                                <button class="btn cmn-btn w-100 py-3 fw-semibold">Book This Order</button>
                             </div>
                         </div>
                     </div>
@@ -758,7 +776,4 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
-
-
-<!-- Mirrored from pixner.net/paylio/paylio-v1/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Sep 2025 06:44:27 GMT -->
 </html>

@@ -8,6 +8,7 @@
     font-size: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
+    padding-right: 88px; /* ensure room for flag selector button */
     background-color: #f8f9fa;
     border-radius: 14px;
 }
@@ -15,6 +16,7 @@
     background-color: #fff;
     border-radius: 10px;
     padding: 6px 10px;
+    z-index: 2; /* stay above input for clicks */
   }
   .custom-currency-dropdown {
     right: 0;
@@ -25,6 +27,7 @@
     border-radius: 14px;
     border: 1px solid #e5e7eb;
     box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+    z-index: 1000; /* render above card */
   }
   .custom-currency-dropdown .currency-list {
     max-height: 260px;
@@ -35,4 +38,10 @@
   }
   .dropdown-menu.show.d-none {
     display: none !important;
+  }
+  /* compact inline select that sits at input end */
+  .custom-currency-select {
+    width: 90px;
+    padding: 4px 8px;
+    border-radius: 10px;
   }

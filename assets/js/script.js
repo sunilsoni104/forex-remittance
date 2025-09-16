@@ -1,5 +1,24 @@
+// Legacy inputs (kept for backwards-compat support)
 const sendInput = document.getElementById('sendAmount');
 const receiveInput = document.getElementById('receiveAmount');
+// New redesigned form inputs
+const amountToSendInput = document.getElementById('amountToSend');
+const amountInInrInput = document.getElementById('amountInInr');
+const receivingAmountInput = document.getElementById('receivingAmount');
+// New simple selects
+const fromCurrencySelect = document.getElementById('fromCurrency');
+const toCurrencySelect = document.getElementById('toCurrency');
+const sendCurrencySelect = document.getElementById('sendCurrency');
+const receiveCurrencySelect = document.getElementById('receiveCurrency');
+const bankFeeUsdEls = [
+    document.getElementById('bankFeeUsd'),
+    document.getElementById('bankFeeUsd2')
+];
+const bankFeeInrEl = document.getElementById('bankFeeInr');
+const totalAmountValueEl = document.getElementById('totalAmountValue');
+const effectiveRateEl = document.getElementById('effectiveRate');
+const payerSenderBtn = document.getElementById('payerSender');
+const payerRecipientBtn = document.getElementById('payerRecipient');
 const exchangeRateText = document.getElementById('exchangeRateText');
 let baseCurrency = 'INR'; // left selector code
 let quoteCurrency = 'USD'; // right selector code
@@ -17,16 +36,47 @@ function updateExchangeRateText() {
 }
 
 function updateConversion() {
-    const sendValue = parseFloat((sendInput?.value || '0').replace(/,/g, '')) || 0;
-    // sendAmount is in baseCurrency, recipient gets is in quoteCurrency
-    const receiveValue = latestRate ? (sendValue / latestRate) : 0;
-    if (receiveInput) receiveInput.value = receiveValue.toFixed(2);
+    // Legacy widget math
+    const legacySend = parseFloat((sendInput?.value || '0').replace(/,/g, '')) || 0;
+    const legacyReceive = latestRate ? (legacySend / latestRate) : 0;
+    if (receiveInput) receiveInput.value = legacyReceive.toFixed(2);
+
+    // New widget math
+    const amountToSend = parseFloat((amountToSendInput?.value || '0').replace(/,/g, '')) || 0; // in quoteCurrency (e.g., USD)
+    // amount in INR (baseCurrency)
+    const amountInInr = latestRate ? (amountToSend * latestRate) : 0;
+    if (amountInInrInput) amountInInrInput.value = Math.round(amountInInr).toString();
+    if (receivingAmountInput && !document.activeElement?.isSameNode(receivingAmountInput)) {
+        receivingAmountInput.value = isNaN(amountToSend) ? '0' : (amountToSend.toString());
+    }
+
+    // Fees (example USD 8 or ZERO)
+    const bankFeeUsd = currentFeeUsd;
+    bankFeeUsdEls.forEach(el => el && (el.textContent = bankFeeUsd.toString()));
+    const bankFeeInr = bankFeeUsd * latestRate;
+    if (bankFeeInrEl) bankFeeInrEl.textContent = Math.round(bankFeeInr).toString();
+
+    // Total: if sender pays, add fee in INR, else zero
+    const totalInInr = payerIsSender ? (amountInInr + bankFeeInr) : amountInInr;
+    if (totalAmountValueEl) totalAmountValueEl.textContent = formatNumber(totalInInr.toFixed(2));
+
+    // Effective rate = total INR / USD sent
+    const effRate = amountToSend > 0 ? totalInInr / amountToSend : latestRate;
+    if (effectiveRateEl) effectiveRateEl.textContent = effRate.toFixed(4);
 }
 
 function setCurrencies(leftCode, rightCode) {
     baseCurrency = leftCode || baseCurrency;
     quoteCurrency = rightCode || quoteCurrency;
     fetchAndSetRate();
+}
+
+// Sync selects to internal state
+function syncSelectsFromState() {
+    if (fromCurrencySelect) fromCurrencySelect.value = baseCurrency;
+    if (toCurrencySelect) toCurrencySelect.value = quoteCurrency;
+    if (sendCurrencySelect) sendCurrencySelect.value = quoteCurrency;
+    if (receiveCurrencySelect) receiveCurrencySelect.value = quoteCurrency;
 }
 
 async function fetchRate(fromCode, toCode) {
@@ -61,21 +111,38 @@ async function fetchAndSetRate() {
     }
     updateExchangeRateText();
     updateConversion();
+    syncSelectsFromState();
 }
 
-sendInput.addEventListener('input', function () {
-    let rawValue = this.value.replace(/,/g, '');
-    if (!isNaN(rawValue) && rawValue !== '') {
-        this.value = formatNumber(parseFloat(rawValue));
-        updateConversion();
-    }
-});
+if (sendInput) {
+    sendInput.addEventListener('input', function () {
+        let rawValue = this.value.replace(/,/g, '');
+        if (!isNaN(rawValue) && rawValue !== '') {
+            this.value = formatNumber(parseFloat(rawValue));
+            updateConversion();
+        }
+    });
+    sendInput.addEventListener('blur', function () {
+        if (this.value && !isNaN(this.value.replace(/,/g, ''))) {
+            this.value = formatNumber(parseFloat(this.value.replace(/,/g, '')));
+        }
+    });
+}
 
-sendInput.addEventListener('blur', function () {
-    if (this.value && !isNaN(this.value.replace(/,/g, ''))) {
-        this.value = formatNumber(parseFloat(this.value.replace(/,/g, '')));
-    }
-});
+// New inputs listeners
+function bindNumericInput(el) {
+    if (!el) return;
+    el.addEventListener('input', function () {
+        const raw = this.value.replace(/,/g, '');
+        if (raw === '' || isNaN(raw)) return updateConversion();
+        this.value = raw; // keep as simple number for ease, no grouping while typing
+        updateConversion();
+    });
+    el.addEventListener('blur', function () { updateConversion(); });
+}
+
+bindNumericInput(amountToSendInput);
+bindNumericInput(receivingAmountInput);
 
 updateExchangeRateText();
 updateConversion();
@@ -103,8 +170,13 @@ function initCurrencyDropdown(root) {
     const dropdown = root.querySelector('[data-currency-dropdown]');
     const search = root.querySelector('[data-currency-search]');
     const list = root.querySelector('[data-currency-list]');
-    const flagEl = root.querySelector('[data-selected-flag]') || document.getElementById('selectedCurrencyFlag');
-    const codeEl = root.querySelector('[data-selected-code]') || document.getElementById('selectedCurrencyCode');
+    // Prefer local elements first, then legacy fallbacks
+    const flagEl = root.querySelector('[data-selected-flag]') ||
+        root.querySelector('#fromFlag') || root.querySelector('#toFlag') ||
+        document.getElementById('selectedCurrencyFlag');
+    const codeEl = root.querySelector('[data-selected-code]') ||
+        root.querySelector('#fromCode') || root.querySelector('#toCode') ||
+        document.getElementById('selectedCurrencyCode');
 
     if (!dropdown || !list) return;
     renderCurrencyList(list);
@@ -115,7 +187,7 @@ function initCurrencyDropdown(root) {
 
     btn.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
     document.addEventListener('click', (e) => {
-        if (!dropdown.contains(e.target) && e.target !== btn) close();
+        if (!dropdown.contains(e.target) && !btn.contains(e.target)) close();
     });
 
     if (search) {
@@ -137,15 +209,15 @@ function initCurrencyDropdown(root) {
         const flag = btnEl.getAttribute('data-flag') || '';
         if (codeEl) codeEl.textContent = code;
         if (flagEl) flagEl.textContent = flag;
-        // Detect which side changed and update currencies accordingly
-        const container = root;
-        const leftSelector = document.getElementById('selectedCurrencyCode');
-        const rightSelector = document.querySelector('[data-selected-code]');
-        const isLeft = container.querySelector('#selectedCurrencyCode');
-        if (isLeft) {
-            setCurrencies(code, quoteCurrency);
-        } else {
-            setCurrencies(baseCurrency, code);
+        // Detect which side changed based on known ids inside this root
+        const isFrom = !!root.querySelector('#fromCode') || !!root.querySelector('#fromSelector');
+        const isTo = !!root.querySelector('#toCode') || !!root.querySelector('#toSelector');
+        if (isFrom) setCurrencies(code, quoteCurrency);
+        else if (isTo) setCurrencies(baseCurrency, code);
+        else {
+            // Fallback: if it has data-selected-code but not from/to, assume right side (quote)
+            const hasSelectedCode = !!root.querySelector('[data-selected-code]');
+            if (hasSelectedCode) setCurrencies(baseCurrency, code); else setCurrencies(code, quoteCurrency);
         }
         close();
     });
@@ -209,6 +281,29 @@ async function loadCurrencies() {
 
 // Kick off loading on page ready
 document.addEventListener('DOMContentLoaded', () => {
-    initAllDropdowns();
-    loadCurrencies();
+    // No API dropdowns now, keep existing logic but it's harmless
+    // Initialize payer toggle and default fees
+    if (payerSenderBtn && payerRecipientBtn) {
+        payerSenderBtn.addEventListener('click', () => { payerIsSender = true; setPayerActive(); updateConversion(); });
+        payerRecipientBtn.addEventListener('click', () => { payerIsSender = false; setPayerActive(); updateConversion(); });
+    }
+    setPayerActive();
+    updateConversion();
+    // Bind selects
+    if (fromCurrencySelect) fromCurrencySelect.addEventListener('change', (e) => { setCurrencies(fromCurrencySelect.value, quoteCurrency); });
+    if (toCurrencySelect) toCurrencySelect.addEventListener('change', (e) => { setCurrencies(baseCurrency, toCurrencySelect.value); });
+    if (sendCurrencySelect) sendCurrencySelect.addEventListener('change', () => { setCurrencies(baseCurrency, sendCurrencySelect.value); });
+    if (receiveCurrencySelect) receiveCurrencySelect.addEventListener('change', () => { setCurrencies(baseCurrency, receiveCurrencySelect.value); });
+    syncSelectsFromState();
 });
+
+// Fee and payer state
+let currentFeeUsd = 8; // change to 0 to simulate ZERO charges
+let payerIsSender = true;
+function setPayerActive() {
+    if (!payerSenderBtn || !payerRecipientBtn) return;
+    payerSenderBtn.classList.toggle('btn-outline-primary', !payerIsSender);
+    payerSenderBtn.classList.toggle('btn-primary', payerIsSender);
+    payerRecipientBtn.classList.toggle('btn-light', payerIsSender);
+    payerRecipientBtn.classList.toggle('btn-primary', !payerIsSender);
+}
