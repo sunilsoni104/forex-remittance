@@ -228,7 +228,7 @@ iframe {
 h1,
 h1 > a {
   font-size: 76px;
-  line-height: 98.8px;
+  line-height: 85px;
   margin-top: -20px;
 }
 
@@ -476,7 +476,7 @@ label {
   z-index: 99999999;
   overflow: visible;
   background: url(../images/preloader.gif) no-repeat center center;
-  background-size: 20%;
+  background-size: 10%;
   background-color: #F8F8F7;
 }
 
@@ -2955,7 +2955,7 @@ label {
     margin-top: -10px;
   }
   .preloader {
-    background-size: 30%;
+    background-size: 15%;
   }
   .header-section .navbar .navbar-collapse .navbar-nav .nav-item .nav-link,
   .header-section .navbar .navbar-collapse .navbar-nav .nav-item .dropdown-item {
@@ -3165,7 +3165,7 @@ label {
     background-position: right top;
   }
   .preloader {
-    background-size: 40%;
+    background-size: 20%;
   }
   .banner-section.blog-details .overlay {
     background-position: top 60px center;
@@ -3635,7 +3635,7 @@ label {
     margin-top: 20px;
   }
   .preloader {
-    background-size: 65%;
+    background-size: 30%;
   }
   .blog-section.details .section-text {
     display: grid !important;
