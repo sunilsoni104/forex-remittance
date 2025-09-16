@@ -382,6 +382,10 @@ label {
   padding-top: 120px;
 }
 
+.pb-30{
+  padding-bottom: 30px;
+}
+
 .py-30 {
   padding-bottom: 30px;
   padding-top: 30px;
@@ -731,17 +735,22 @@ label {
 }
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .nav-link.dropdown-toggle {
   margin-right: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .nav-link.dropdown-toggle::after {
-  position: absolute;
+  position: relative;
   content: "C";
   border: none;
   font-family: "arafat font";
   font-weight: 400;
   font-size: 14px;
+  margin-left: 0;
 }
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .dropdown-menu {
   background-color: var(--body-color);
+  text-align: center;
 }
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .dropdown-menu li a {
   display: block;
@@ -756,9 +765,9 @@ label {
   margin-left: 30px;
 }
 .header-section .navbar .navbar-collapse .right-area .login {
-  font-weight: 600;
-  font-size: 14px;
-  padding: 6px 12px;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 0 10px;
 }
 .header-section .navbar .navbar-collapse .right-area .cmn-btn {
   margin-left: 12px;
@@ -786,6 +795,7 @@ label {
   opacity: 0;
   left: 165px;
   top: 0;
+  text-align: center;
 }
 .header-section .nav-item.main-navbar .main-menu .sub-navbar:hover .sub-menu {
   opacity: 1;
