@@ -1,0 +1,38 @@
+/* ================= Custom overrides for transfer form (Bootstrap-based) ================ */
+.custom-transfer-card {
+    border-radius: 20px;
+    padding: 24px;
+  }
+  .custom-amount-input {
+    font-weight: 700;
+    font-size: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #f8f9fa;
+    border-radius: 14px;
+}
+  .custom-currency-btn {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 6px 10px;
+  }
+  .custom-currency-dropdown {
+    right: 0;
+    top: calc(100% + 0px);
+    min-width: 360px;
+    max-height: 335px;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+  }
+  .custom-currency-dropdown .currency-list {
+    max-height: 260px;
+    overflow-y: auto;
+  }
+  .btn-white {
+    background-color: #fff;
+  }
+  .dropdown-menu.show.d-none {
+    display: none !important;
+  }
