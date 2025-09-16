@@ -9,7 +9,7 @@ const receivingAmountInput = document.getElementById('receivingAmount');
 const fromCurrencySelect = document.getElementById('fromCurrency');
 const toCurrencySelect = document.getElementById('toCurrency');
 const sendCurrencySelect = document.getElementById('sendCurrency');
-const receiveCurrencySelect = document.getElementById('receiveCurrency');
+const receiveCurrencyDisplay = document.getElementById('receiveCurrencyDisplay');
 const bankFeeUsdEls = [
     document.getElementById('bankFeeUsd'),
     document.getElementById('bankFeeUsd2')
@@ -20,6 +20,7 @@ const effectiveRateEl = document.getElementById('effectiveRate');
 const payerSenderBtn = document.getElementById('payerSender');
 const payerRecipientBtn = document.getElementById('payerRecipient');
 const exchangeRateText = document.getElementById('exchangeRateText');
+const bookOrderBtn = document.getElementById('bookOrderBtn');
 let baseCurrency = 'INR'; // left selector code
 let quoteCurrency = 'USD'; // right selector code
 let latestRate = 88.0987; // fallback initial
@@ -46,7 +47,8 @@ function updateConversion() {
     // amount in INR (baseCurrency)
     const amountInInr = latestRate ? (amountToSend * latestRate) : 0;
     if (amountInInrInput) amountInInrInput.value = Math.round(amountInInr).toString();
-    if (receivingAmountInput && !document.activeElement?.isSameNode(receivingAmountInput)) {
+    // keep receiving amount mirrored to amountToSend when user isn't editing it
+    if (receivingAmountInput && document.activeElement !== receivingAmountInput) {
         receivingAmountInput.value = isNaN(amountToSend) ? '0' : (amountToSend.toString());
     }
 
@@ -76,7 +78,7 @@ function syncSelectsFromState() {
     if (fromCurrencySelect) fromCurrencySelect.value = baseCurrency;
     if (toCurrencySelect) toCurrencySelect.value = quoteCurrency;
     if (sendCurrencySelect) sendCurrencySelect.value = quoteCurrency;
-    if (receiveCurrencySelect) receiveCurrencySelect.value = quoteCurrency;
+    if (receiveCurrencyDisplay) receiveCurrencyDisplay.textContent = quoteCurrency;
 }
 
 async function fetchRate(fromCode, toCode) {
@@ -293,8 +295,60 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fromCurrencySelect) fromCurrencySelect.addEventListener('change', (e) => { setCurrencies(fromCurrencySelect.value, quoteCurrency); });
     if (toCurrencySelect) toCurrencySelect.addEventListener('change', (e) => { setCurrencies(baseCurrency, toCurrencySelect.value); });
     if (sendCurrencySelect) sendCurrencySelect.addEventListener('change', () => { setCurrencies(baseCurrency, sendCurrencySelect.value); });
-    if (receiveCurrencySelect) receiveCurrencySelect.addEventListener('change', () => { setCurrencies(baseCurrency, receiveCurrencySelect.value); });
     syncSelectsFromState();
+    // Submit booking
+    if (bookOrderBtn) {
+        bookOrderBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const city = (document.getElementById('citySelect')?.value) || '';
+            const fromCur = baseCurrency;
+            const toCur = quoteCurrency;
+            const amountToSend = parseFloat((amountToSendInput?.value || '0').replace(/,/g, '')) || 0;
+            const receivingAmount = parseFloat((receivingAmountInput?.value || '0').replace(/,/g, '')) || 0;
+            const amountInInr = parseFloat((amountInInrInput?.value || '0').replace(/,/g, '')) || 0;
+            const bankFeeUsd = currentFeeUsd;
+            const bankFeeInr = Math.round(bankFeeUsd * latestRate);
+            const totalAmountInr = parseFloat((totalAmountValueEl?.textContent || '0').replace(/,/g, '')) || 0;
+
+            // Basic validations
+            const errors = [];
+            if (!city) errors.push('Please select a city.');
+            if (amountToSend <= 0) errors.push('Enter a valid Amount to be Sent.');
+            if (receivingAmount <= 0) errors.push('Enter a valid Receiving amount.');
+            if (fromCur === toCur && toCur !== 'INR') errors.push('Transfer From and To currencies cannot be same unless base is INR.');
+
+            if (errors.length) {
+                alert(errors.join('\n'));
+                return;
+            }
+
+            const payload = {
+                city,
+                fromCurrency: fromCur,
+                toCurrency: toCur,
+                amountToBeSent: { value: amountToSend, currency: toCur },
+                amountInINR: { value: amountInInr, currency: 'INR' },
+                receivingAmount: { value: receivingAmount, currency: toCur },
+                exchangeRate: { basePerQuote: latestRate, text: exchangeRateText?.textContent || '' },
+                fees: {
+                    bankFeeUsd,
+                    bankFeeInr,
+                    payer: payerIsSender ? 'SENDER' : 'RECIPIENT'
+                },
+                totals: {
+                    totalPayableInINR: totalAmountInr,
+                    effectiveRate: parseFloat(effectiveRateEl?.textContent || latestRate)
+                },
+                meta: {
+                    ts: new Date().toISOString()
+                }
+            };
+
+            // For now just show a confirmation
+            console.log('Booking payload', payload);
+            alert('Order booked successfully!\n\n' + JSON.stringify(payload, null, 2));
+        });
+    }
 });
 
 // Fee and payer state

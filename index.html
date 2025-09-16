@@ -98,53 +98,11 @@
                                     <h1 class="title">Pay Anyone, Anywhere</h1>
                                     <p class="xlr">Send and receive money across the world in just a few clicks. Fast, secure, and reliable remittance solutions tailored for your needs.</p>
                                 </div>
-                                <!-- <div class="bottom-area d-xxl-flex">
-                                    <a href="sign-up.html" class="cmn-btn">Open a Free Account</a>
-                                    <a class="cmn-btn active mfp-iframe popupvideo" href="https://www.youtube.com/watch?v=Djz8Nc0Qxwk">See How it Works</a>
-                                </div> -->
                             </div>
                         </div>
 
-                        <div class="col-xxl-4 col-xl-5 col-md-6">
+                        <div class="col-xxl-4 col-xl-6 col-md-6">
                             <div class="card shadow-lg border-0 custom-transfer-card">
-                                <!-- Location -->
-                                <div class="mb-2">
-                                    <label class="form-label small text-dark">Location</label>
-                                    <select id="citySelect" class="form-select form-select-lg">
-                                        <option selected>Delhi</option>
-                                        <option>Mumbai</option>
-                                        <option>Bengaluru</option>
-                                        <option>Hyderabad</option>
-                                        <option>Chennai</option>
-                                    </select>
-                                </div>
-
-                                <!-- Transfer from / to -->
-                                <div class="row g-2 mb-2">
-                                    <div class="col-6">
-                                        <label class="form-label small text-dark">Transfer From</label>
-                                        <select id="fromCurrency" class="form-select form-select-lg custom-amount-input">
-                                            <option value="INR" selected>🇮🇳 Indian Rupee (INR)</option>
-                                            <option value="USD">🇺🇸 US Dollar (USD)</option>
-                                            <option value="EUR">🇪🇺 Euro (EUR)</option>
-                                            <option value="GBP">🇬🇧 British Pound (GBP)</option>
-                                            <option value="AUD">🇦🇺 Australian Dollar (AUD)</option>
-                                            <option value="CAD">🇨🇦 Canadian Dollar (CAD)</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-6">
-                                        <label class="form-label small text-dark">Transfer To</label>
-                                        <select id="toCurrency" class="form-select form-select-lg custom-amount-input">
-                                            <option value="USD" selected>🇺🇸 US Dollar (USD)</option>
-                                            <option value="EUR">🇪🇺 Euro (EUR)</option>
-                                            <option value="GBP">🇬🇧 British Pound (GBP)</option>
-                                            <option value="AUD">🇦🇺 Australian Dollar (AUD)</option>
-                                            <option value="CAD">🇨🇦 Canadian Dollar (CAD)</option>
-                                            <option value="INR">🇮🇳 Indian Rupee (INR)</option>
-                                        </select>
-                                    </div>
-                                </div>
-
                                 <!-- Exchange rate -->
                                 <div class="text-center mb-2">
                                     <div class="badge bg-neutral text-dark py-1 px-2 rounded-5">
@@ -173,33 +131,12 @@
                                     </div>
                                 </div>
 
-                                <!-- Bank charges -->
-                                <div class="mb-2">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div>
-                                            <div class="fw-semibold text-dark fs-17">Foreign bank charges USD <span id="bankFeeUsd">0</span>, to be paid by?</div>
-                                            <div class="small text-muted">Bank Fees : <span class="fw-semibold">USD <span id="bankFeeUsd2">0</span> | INR <span id="bankFeeInr">0</span></span></div>
-                                        </div>
-                                        <div class="d-flex gap-2">
-                                            <button id="payerSender" class="btn btn-outline-primary">Sender</button>
-                                            <button id="payerRecipient" class="btn btn-light">Recipient</button>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <!-- Receiving amount -->
                                 <div class="mb-2">
                                     <label class="form-label small text-dark">Receiving amount</label>
                                     <div class="position-relative">
                                         <input type="text" value="500" id="receivingAmount" class="form-control form-control-lg custom-amount-input pe-5">
-                                        <select id="receiveCurrency" class="form-select custom-currency-select position-absolute top-50 end-0 translate-middle-y me-2">
-                                            <option value="USD" selected>USD</option>
-                                            <option value="EUR">EUR</option>
-                                            <option value="GBP">GBP</option>
-                                            <option value="AUD">AUD</option>
-                                            <option value="CAD">CAD</option>
-                                            <option value="INR">INR</option>
-                                        </select>
+                                        <span id="receiveCurrencyDisplay" class="badge bg-white border position-absolute top-50 end-0 translate-middle-y me-2 px-3 py-2 fw-semibold text-dark">USD</span>
                                     </div>
                                 </div>
 
@@ -209,10 +146,6 @@
                                         <div class="small text-muted">Total Amount</div>
                                         <div class="h4 m-0 fw-bold text-dark">₹ <span id="totalAmountValue">0</span></div>
                                     </div>
-                                    <div class="d-flex align-items-center gap-2 mt-2 small">
-                                        <span>🏷️</span>
-                                        <span>Get an effective rate of ₹<span id="effectiveRate">0</span></span>
-                                    </div>
                                     <div class="d-flex align-items-center gap-2 mt-1 small text-muted">
                                         <span>⏱️</span>
                                         <span>Remittance orders are usually processed within 48 working hours.</span>
@@ -220,7 +153,7 @@
                                 </div>
 
                                 <!-- Action button -->
-                                <button class="btn cmn-btn w-100 py-3 fw-semibold">Book This Order</button>
+                                <button id="bookOrderBtn" class="btn cmn-btn w-100 py-3 fw-semibold">Book This Order</button>
                             </div>
                         </div>
                     </div>
