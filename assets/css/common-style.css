@@ -8,6 +8,10 @@
 .fs-17 { font-size: 17px !important; }
 .fs-35 { font-size: 35px !important; }
 
+/* padding */
+.p-0 {
+  padding: 0 !important;
+}
 /* padding right */
 
 .pr-25 {
