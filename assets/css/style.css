@@ -17,9 +17,10 @@
 # Section Area
 # Footer Area
 ============================================*/
-@import url("https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&amp;display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 :root {
-  --body-font: "Jost", sans-serif;
+  --main-font-family: "Roboto", sans-serif;
+  --body-font: "Roboto", sans-serif;
   --body-color: #FFFFFF;
   --primary-color: #4743c9;
   --secondary-color: #00FE83;
@@ -838,7 +839,7 @@ label {
   top: 0;
 }
 .banner-section .overlay .banner-content {
-  padding: 120px 0 40px;
+  padding: 40px 0 40px;
 }
 .banner-section .overlay .banner-content .container {
   position: relative;

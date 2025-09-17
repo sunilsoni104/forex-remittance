@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="assets/css/arafat-font.css">
     <link rel="stylesheet" href="assets/css/plugin/animate.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/form-style.css">
     <link rel="stylesheet" href="assets/css/common-style.css">
     <link rel="stylesheet" href="assets/css/style-rtl.min.css" id="rtl-stylesheet" disabled>
@@ -39,6 +40,37 @@
 
     <!-- header-section start -->
     <header class="header-section">
+        <!-- Top Utility Bar -->
+        <div class="utility-bar" id="utilityBar">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="utility-links">
+                            <a href="index.html" class="utility-link">
+                                <i class="fas fa-mobile-alt"></i>
+                                Mobile
+                            </a>
+                            <span class="separator">|</span>
+                            <a href="tel:+919212219191" class="utility-link phone-link">
+                                <i class="fas fa-phone"></i>
+                                +91 9212219191
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="utility-actions">
+                            <a href="index.html" class="utility-link">
+                                Login
+                            </a>
+                            <span class="separator">|</span>
+                            <a href="index.html" class="utility-link">
+                                Register
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="overlay">
             <div class="container">
                 <div class="row d-flex header-area">
@@ -52,22 +84,100 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navbar-content">
                             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html">About Us</a>
-                                </li>
+                                <!-- Commented out Rate List
                                 <li class="nav-item">
                                     <a class="nav-link" href="index.html">Rate List</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Contact</a>
+                                -->
+                                
+                                <!-- Select Dropdown -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button">
+                                        Services
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="servicesDropdown">
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-globe"></i>
+                                            International Transfer
+                                        </a>
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-home"></i>
+                                            Domestic Transfer
+                                        </a>
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-briefcase"></i>
+                                            Business Transfer
+                                        </a>
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-graduation-cap"></i>
+                                            Student Transfer
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            Currency Exchange
+                                        </a>
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-credit-card"></i>
+                                            Forex Cards
+                                        </a>
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-shield-alt"></i>
+                                            Travel Insurance
+                                        </a>
+                                    </div>
+                                </li>
+                                
+                                <!-- Second Dropdown -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="supportDropdown" role="button">
+                                        Support
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="supportDropdown">
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-question-circle"></i>
+                                            FAQ
+                                        </a>
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-comments"></i>
+                                            Live Chat
+                                        </a>
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-phone"></i>
+                                            Contact Us
+                                        </a>
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-search"></i>
+                                            Track Transfer
+                                        </a>
+                                    </div>
+                                </li>
+                                
+                                <!-- Third Dropdown -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="toolsDropdown" role="button">
+                                        Tools
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="toolsDropdown">
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-calculator"></i>
+                                            Currency Converter
+                                        </a>
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-chart-line"></i>
+                                            Rate Alerts
+                                        </a>
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-history"></i>
+                                            Transaction History
+                                        </a>
+                                        <a class="dropdown-item" href="index.html">
+                                            <i class="fas fa-download"></i>
+                                            Download App
+                                        </a>
+                                    </div>
                                 </li>
                             </ul>
-                            <div class="right-area header-action d-flex align-items-center max-un">
-                                <a href="index.html" class="login">Login</a>
-                                <a href="index.html" class="cmn-btn">Sign Up
-                                    <i class="icon-d-right-arrow-2"></i>
-                                </a>
-                            </div>
                         </div>
                     </nav>
                 </div>
@@ -109,12 +219,12 @@
                                         <span id="exchangeRateText" class="small fw-semibold">1 USD = 88.07 INR</span>
                                     </div>
                                 </div>
-
+            
                                 <!-- Amount to be sent / Amount in INR -->
                                 <div class="row g-2 mb-2">
                                     <div class="col-6">
                                         <label class="form-label small text-dark">Amount to be Sent</label>
-                                        <div class="position-relative">
+                                    <div class="position-relative">
                                             <input type="text" value="500" id="amountToSend" class="form-control form-control-lg custom-amount-input pe-5">
                                             <select id="sendCurrency" class="form-select custom-currency-select position-absolute top-50 end-0 translate-middle-y me-2" onchange="setQuoteCurrency(this.value);">
                                                 <option value="USD" selected>USD</option>
@@ -130,7 +240,7 @@
                                         <input type="text" id="amountInInr" class="form-control form-control-lg custom-amount-input" value="44417" readonly>
                                     </div>
                                 </div>
-
+            
                                 <!-- Receiving amount -->
                                 <div class="mb-2">
                                     <label class="form-label small text-dark">Receiving amount</label>
@@ -139,7 +249,7 @@
                                         <span id="receiveCurrencyDisplay" class="badge bg-white border position-absolute top-50 end-0 translate-middle-y me-2 px-3 py-2 fw-semibold text-dark">USD</span>
                                     </div>
                                 </div>
-
+            
                                 <!-- Total amount and extras -->
                                 <div class="p-3 bg-light rounded border mb-3">
                                     <div class="d-flex justify-content-between align-items-center">
@@ -151,7 +261,7 @@
                                         <span>Remittance orders are usually processed within 48 working hours.</span>
                                     </div>
                                 </div>
-
+            
                                 <!-- Action button -->
                                 <button id="bookOrderBtn" class="btn cmn-btn w-100 py-3 fw-semibold">Book This Order</button>
                             </div>
@@ -665,5 +775,6 @@
     <script src="assets/js/plugin/plugin.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/header/header-scroll.js"></script>
 </body>
 </html>
