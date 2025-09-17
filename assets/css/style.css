@@ -295,7 +295,7 @@ li,
 label {
   margin: 0;
   font-family: var(--body-font);
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 400;
   color: var(--para-color);
   line-height: 20px;
@@ -318,12 +318,12 @@ label {
 
 .sub-title {
   color: var(--primary-color);
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .title {
   font-weight: 700;
-  margin-bottom: 22px;
+  margin-bottom: 15px;
 }
 
 .xxlr {
@@ -381,6 +381,10 @@ label {
 
 .pt-120 {
   padding-top: 120px;
+}
+
+.pt-80 {
+  padding-top: 80px;
 }
 
 .pb-30{
@@ -1552,7 +1556,7 @@ label {
   text-align: center;
   margin-bottom: 20px;
   border-radius: 20px;
-  padding: 40px 20px 33px;
+  padding: 35px 20px 25px;
   transition: 0.3s;
 }
 .global-payment .single-item:hover {
@@ -1560,7 +1564,27 @@ label {
   border-color: transparent;
 }
 .global-payment .single-item h5 {
-  margin: 21px 0 24px;
+  margin: 20px 0 10px;
+}
+.global-payment .row.cus-mar {
+  /* keep Bootstrap's flex row; allow wrapping and add only vertical gap */
+  align-items: stretch;
+  flex-wrap: wrap;
+  row-gap: 20px;
+}
+.global-payment .row.cus-mar > [class^="col-"],
+.global-payment .row.cus-mar > [class*=" col-"] {
+  display: flex;
+}
+.global-payment .single-item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.global-payment .single-item img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .global-payment.features {
   margin-top: 0;
