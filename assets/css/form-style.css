@@ -1,20 +1,20 @@
 /* ================= Custom overrides for transfer form (Bootstrap-based) ================ */
 .custom-transfer-card {
     border-radius: 20px;
-    padding: 24px;
+    /* padding: 24px; */
   }
   .custom-amount-input {
-    font-weight: 700;
+    font-weight: 400;
     font-size: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
-    padding-right: 88px; /* ensure room for flag selector button */
-    background-color: #f8f9fa;
-    border-radius: 14px;
+    padding-right: 88px;
+    /* background-color: #f8f9fa; */
+    /* border-radius: 14px; */
 }
   .custom-currency-btn {
     background-color: #fff;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     padding: 6px 10px;
     z-index: 2; /* stay above input for clicks */
   }
@@ -24,7 +24,7 @@
     min-width: 360px;
     max-height: 335px;
     overflow: hidden;
-    border-radius: 14px;
+    /* border-radius: 14px; */
     border: 1px solid #e5e7eb;
     box-shadow: 0 20px 45px rgba(0,0,0,0.12);
     z-index: 1000; /* render above card */
@@ -43,6 +43,11 @@
   .custom-currency-select {
     width: 90px;
     padding: 4px 8px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
   }
-  #receiveCurrencyDisplay{ min-width:72px; border-radius:10px; }
+  #receiveCurrencyDisplay{ min-width:72px; /* border-radius:10px; */ }
+
+  .form-control:focus,
+  .form-select:focus {
+    box-shadow: none;
+  }

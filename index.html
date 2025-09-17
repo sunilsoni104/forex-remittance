@@ -26,6 +26,15 @@
 </head>
 
 <body>
+    <style>
+        .login-note{background:#fff2df;border:1px solid #ffe0b2;border-radius:.5rem}
+        .login-note .login-link{color:#0b74e5;font-weight:700;text-decoration:none}
+        .login-note .login-link:hover{text-decoration:underline}
+        .login-note .note-icon{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#ffefbd;color:#0b74e5}
+        .login-note .note-arrow{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#ececec;color:#6b7280}
+        /* Smaller banner headline */
+        .banner-section .title{font-size:2rem;}
+    </style>
     <!-- start preloader -->
     <div class="preloader" id="preloader"></div>
     <!-- end preloader -->
@@ -198,9 +207,9 @@
                         <div class="col-lg-5 col-md-6">
                             <div class="main-content">
                                 <div class="top-area section-text">
-                                    <h5 class="sub-title">Simple. Secure. Fast.</h5>
+                                    <h6 class="sub-title">Simple. Secure. Fast.</h6>
                                     <h1 class="title">Pay Anyone, Anywhere</h1>
-                                    <p class="xlr">Send and receive money across the world in just a few clicks. Fast, secure, and reliable remittance solutions tailored for your needs.</p>
+                                    <p>Send and receive money across the world in just a few clicks. Fast, secure, and reliable remittance solutions tailored for your needs.</p>
                                 </div>
                             </div>
                         </div>
@@ -243,7 +252,7 @@
                                             <!-- Amount to be sent / Amount in INR -->
                                             <div class="row g-2 mb-2">
                                                 <div class="col-6">
-                                                    <label class="form-label small text-dark">Amount to be Sent</label>
+                                                    <label class="form-label fs-14 text-primary" for="amountToSend">Amount to be Sent</label>
                                                     <div class="position-relative">
                                                         <input type="text" value="500" id="amountToSend" class="form-control form-control-lg custom-amount-input pe-5">
                                                         <select id="sendCurrency" class="form-select custom-currency-select position-absolute top-50 end-0 translate-middle-y me-2" onchange="setQuoteCurrency(this.value);">
@@ -256,43 +265,98 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label class="form-label small text-dark">Amount in INR</label>
-                                                    <input type="text" id="amountInInr" class="form-control form-control-lg custom-amount-input" value="44417" readonly>
+                                                    <label class="form-label fs-14 text-primary" for="amountInInr">Amount in INR</label>
+                                                    <input type="text" id="amountInInr" class="form-control form-control-lg custom-amount-input" readonly>
                                                 </div>
                                             </div>
                                             <!-- Receiving amount -->
                                             <div class="mb-2">
-                                                <label class="form-label small text-dark">Receiving amount</label>
+                                                <label class="form-label fs-14 text-primary" for="receivingAmount">Receiving amount</label>
                                                 <div class="position-relative">
-                                                    <input type="text" value="500" id="receivingAmount" class="form-control form-control-lg custom-amount-input pe-5">
+                                                    <input type="text" id="receivingAmount" class="form-control form-control-lg custom-amount-input pe-5" readonly>
                                                     <span id="receiveCurrencyDisplay" class="badge bg-white border position-absolute top-50 end-0 translate-middle-y me-2 px-3 py-2 fw-semibold text-dark">USD</span>
                                                 </div>
                                             </div>
                                             <!-- Total amount and extras -->
                                             <div class="p-3 bg-light rounded border mb-3">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="small text-muted">Total Amount</div>
-                                                    <div class="h4 m-0 fw-bold text-dark">₹ <span id="totalAmountValue">0</span></div>
+                                                    <div class="fs-14 text-primary">Total Amount</div>
+                                                    <div class="h4 m-0 fw-bold text-dark">₹ <span id="totalAmountValue" class="fs-24">0</span></div>
                                                 </div>
-                                                <div class="d-flex align-items-center gap-2 mt-1 small text-muted">
+                                                <div class="d-flex align-items-center gap-2 mt-2 small text-muted">
                                                     <span>⏱️</span>
                                                     <span>Remittance orders are usually processed within 48 working hours.</span>
                                                 </div>
                                             </div>
+
+                                            <!-- Login note -->
+                                            <div class="login-note d-flex align-items-center justify-content-between p-2 mb-2">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="note-icon"><i class="fas fa-badge-check"></i></span>
+                                                    <span class="small">Already a registered user? <a href="#" class="login-link">LOGIN</a> to avail additional discounts.</span>
+                                                </div>
+                                                <span class="note-arrow"><i class="fas fa-arrow-right"></i></span>
+                                            </div>
+                                            <!-- Quick lead capture -->
+                                            <div class="mt-2">
+                                                <div class="row g-2 align-items-end">
+                                                    <div class="col-6">
+                                                        <label class="form-label fs-14 text-primary" for="leadMobileSend">Mobile Number</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text">+91</span>
+                                                            <input type="text" id="leadMobileSend" class="form-control" placeholder="Enter Mobile Number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label class="form-label fs-14 text-primary" for="leadEmailSend">Email ID</label>
+                                                        <input type="email" id="leadEmailSend" class="form-control" placeholder="Enter Email ID">
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <!-- Action button -->
-                                            <button id="bookOrderBtn" class="btn cmn-btn w-100 py-3 fw-semibold">Book This Order</button>
+                                            <button id="bookOrderBtn" class="btn cmn-btn w-100 mt-3 py-3 fw-semibold">Book This Order</button>
                                         </div>
                                     </div>
                                     <!-- Buy Forex Card Tab -->
                                     <div class="tab-pane fade" id="cardTabPane" role="tabpanel" aria-labelledby="card-tab">
                                         <div class="custom-transfer-card">
+                                            <!-- Login note -->
+                                            <div class="login-note d-flex align-items-center justify-content-between p-2 mb-2">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span class="note-icon"><i class="fas fa-badge-check"></i></span>
+                                                    <span class="small">Already a registered user? <a href="#" class="login-link">LOGIN</a> to avail additional discounts.</span>
+                                                </div>
+                                                <span class="note-arrow"><i class="fas fa-arrow-right"></i></span>
+                                            </div>
                                             <div class="mb-2">
-                                                <label class="form-label small text-dark">City</label>
+                                                <label class="form-label fs-14 text-primary" for="cardCity">City</label>
                                                 <input type="text" class="form-control form-control-lg custom-amount-input" id="cardCity" placeholder="Enter city">
+                                            </div>
+                                            <!-- Quick lead capture -->
+                                            <div class="mb-2">
+                                                <div class="row g-2 align-items-end">
+                                                    <div class="col-6">
+                                                        <label class="form-label fs-14 text-primary" for="leadMobileCard">Mobile Number</label>
+                                                        <div class="input-group input-group-lg">
+                                                            <span class="input-group-text">+91</span>
+                                                            <input type="text" id="leadMobileCard" class="form-control custom-amount-input" placeholder="Enter Mobile Number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label class="form-label fs-14 text-primary" for="leadEmailCard">Email ID</label>
+                                                        <input type="email" id="leadEmailCard" class="form-control form-control-lg custom-amount-input" placeholder="Enter Email ID">
+                                                    </div>
+                                                </div>
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="checkbox" value="" id="policyCard">
+                                                    <label class="form-check-label small" for="policyCard">I accept the <a href="#">Privacy Policy</a>.</label>
+                                                </div>
+                                                <button class="btn btn-secondary w-100 mt-2 fw-semibold">GET YOUR QUOTE <i class="fas fa-angle-right ms-1"></i></button>
                                             </div>
                                             <div class="row g-2 mb-2">
                                                 <div class="col-6">
-                                                    <label class="form-label small text-dark">Load Currency</label>
+                                                    <label class="form-label fs-14 text-primary" for="cardCurrency">Load Currency</label>
                                                     <select id="cardCurrency" class="form-select form-select-lg custom-amount-input">
                                                         <option value="USD" selected>USD</option>
                                                         <option value="EUR">EUR</option>
@@ -302,12 +366,12 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label class="form-label small text-dark">Amount</label>
+                                                    <label class="form-label fs-14 text-primary" for="cardAmount">Amount</label>
                                                     <input type="text" id="cardAmount" class="form-control form-control-lg custom-amount-input" placeholder="e.g. 1000">
                                                 </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label small text-dark">Card Type</label>
+                                                <label class="form-label fs-14 text-primary" for="cardType">Card Type</label>
                                                 <select id="cardType" class="form-select form-select-lg custom-amount-input">
                                                     <option selected>Multi-Currency Forex Card</option>
                                                     <option>Single Currency Card</option>

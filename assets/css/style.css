@@ -3786,7 +3786,7 @@ label {
   border-top-right-radius: .5rem;
 }
 .tab-accent.nav-tabs .nav-link.active {
-  background-color: #1e6ed8;
+  background-color: #2b4066;
   color: #ffffff;
 }
 
@@ -3797,7 +3797,7 @@ label {
 .ticker-bar {
   position: relative;
   overflow: hidden;
-  background-color: #ffd84d;
+  background-color: #fff5b0;
   /* border-radius: .5rem; */
 }
 .ticker-track {
