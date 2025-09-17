@@ -6,6 +6,10 @@
 .fs-16 { font-size: 16px !important; }
 .fs-17 { font-size: 17px !important; }
 
+/* padding */
+.p-0 {
+  padding: 0 !important;
+}
 /* padding right */
 
 .pr-25 {
