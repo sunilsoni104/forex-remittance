@@ -280,7 +280,7 @@ a {
   display: inline-block;
   color: var(--para-color);
   font-weight: 400;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 30px;
 }
 
@@ -374,16 +374,28 @@ label {
   margin-top: 80px;
 }
 
-.pt-120 {
-  padding-top: 120px;
+.pt-15 {
+  padding-top: 15px;
+}
+
+.pt-30 {
+  padding-top: 30px;
 }
 
 .pt-80 {
   padding-top: 80px;
 }
 
+.pt-120 {
+  padding-top: 120px;
+}
+
 .pb-30{
   padding-bottom: 30px;
+}
+
+.pb-80{
+  padding-bottom: 80px;
 }
 
 .py-30 {
@@ -717,7 +729,7 @@ label {
   color: var(--head-alt-color);
 }
 .header-section .navbar {
-  padding: 12px 4px;
+  padding: 12px 0px;
 }
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .nav-link,
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .dropdown-item {
@@ -1333,16 +1345,17 @@ label {
   background-color: var(--bs-white);
   border: 1px solid #e2e2ea;
   border-radius: 35px;
-  padding: 10px;
+  padding: 5px 15px;
 }
 .footer-section .newsletter form .form-group input {
   border-radius: 35px;
-  padding: 0 20px;
+  padding: 0 15px;
+  font-size: 15px;
   border-color: transparent;
 }
 .footer-section .newsletter form .form-group button {
-  min-width: 50px;
-  min-height: 50px;
+  min-width: 40px;
+  min-height: 40px;
   border-radius: 50%;
   background-color: var(--primary-color);
 }
@@ -1369,8 +1382,8 @@ label {
   margin-left: 18px;
 }
 .footer-section .footer-area .footer-bottom {
-  padding: 30px 0;
-  margin-top: 30px;
+  padding: 10px 0;
+  margin-top: 60px;
 }
 
 .counter-section {
@@ -1662,7 +1675,7 @@ label {
   top: calc(30% - 20px);
 }
 .how-it-works .single-item h5 {
-  margin: 21px 0 24px;
+  margin: 20px 0 20px;
 }
 .how-it-works.second .single-item::after {
   width: 123px;
@@ -1719,7 +1732,7 @@ label {
 .feature-block {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .feature-block:last-child {
@@ -1779,7 +1792,7 @@ label {
 .secure-payment-features .title {
   color: var(--head-color);
   font-weight: 700;
-  margin-bottom: 22px;
+  margin-bottom: 10px;
 }
 
 .secure-payment-features .section-header p {
@@ -1819,13 +1832,13 @@ label {
 }
 
 .icon-circle {
-  width: 80px;
-  height: 80px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 25px;
+  margin: 0 auto 15px;
   border: 3px solid;
   transition: all 0.3s ease;
 }
@@ -1850,7 +1863,6 @@ label {
 }
 
 .feature-card h5 {
-  margin-bottom: 20px;
   font-weight: 600;
   color: var(--head-color);
 }
@@ -1984,7 +1996,7 @@ label {
   padding: 17px 30px;
   border-radius: 10px;
   background-color: transparent;
-  font-size: inherit;
+  font-size: 15px;
   font-weight: inherit;
   color: inherit;
   border: none;
