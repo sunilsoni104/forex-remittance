@@ -23,13 +23,9 @@
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/form-style.css">
     <link rel="stylesheet" href="assets/css/common-style.css">
-    <link rel="stylesheet" href="assets/css/style-rtl.min.css" id="rtl-stylesheet" disabled>
-    
 </head>
 
 <body>
-
-
     <!-- start preloader -->
     <div class="preloader" id="preloader"></div>
     <!-- end preloader -->
@@ -210,58 +206,117 @@
                         </div>
 
                         <div class="col-xxl-4 col-xl-6 col-md-6">
-                            <div class="card shadow-lg border-0 custom-transfer-card">
-                                <!-- Exchange rate -->
-                                <div class="text-center mb-2">
-                                    <div class="badge bg-neutral text-dark py-1 px-2 rounded-5">
-                                        <span id="exchangeRateText" class="small fw-semibold">1 USD = 88.07 INR</span>
-                                    </div>
-                                </div>
-            
-                                <!-- Amount to be sent / Amount in INR -->
-                                <div class="row g-2 mb-2">
-                                    <div class="col-6">
-                                        <label class="form-label small text-dark">Amount to be Sent</label>
-                                    <div class="position-relative">
-                                            <input type="text" value="500" id="amountToSend" class="form-control form-control-lg custom-amount-input pe-5">
-                                            <select id="sendCurrency" class="form-select custom-currency-select position-absolute top-50 end-0 translate-middle-y me-2" onchange="setQuoteCurrency(this.value);">
-                                                <option value="USD" selected>USD</option>
-                                                <option value="EUR">EUR</option>
-                                                <option value="GBP">GBP</option>
-                                                <option value="AUD">AUD</option>
-                                                <option value="CAD">CAD</option>
-                                            </select>
+                            <div class="card shadow-lg border-0">
+                                <!-- Tabs Header -->
+                                <ul class="nav nav-tabs nav-fill tab-accent" id="transferTabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active fw-semibold" id="send-tab" data-bs-toggle="tab" data-bs-target="#sendTabPane" type="button" role="tab" aria-controls="sendTabPane" aria-selected="true"><i class="fas fa-paper-plane me-2"></i><span>Send Money</span></button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link fw-semibold" id="card-tab" data-bs-toggle="tab" data-bs-target="#cardTabPane" type="button" role="tab" aria-controls="cardTabPane" aria-selected="false"><i class="fas fa-credit-card me-2"></i><span>Buy Forex Card</span></button>
+                                    </li>
+                                </ul>
+                                <!-- Scrolling ticker under tabs -->
+                                <div class="pb-0 pt-2">
+                                    <div class="ticker-bar py-1 px-3">
+                                        <div class="ticker-track">
+                                            <span class="ticker-item">Paperless Transfer, No Need to visit branch.</span>
+                                            <span class="ticker-item">USD ₹ 88.30</span>
+                                            <span class="ticker-item">EUR ₹ 96.10</span>
+                                            <span class="ticker-item">GBP ₹ 112.75</span>
+                                            <span class="ticker-item">AUD ₹ 59.25</span>
+                                            <span class="ticker-item">CAD ₹ 64.10</span>
+                                            <span class="ticker-item">Quick KYC verification and same-day processing.</span>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <label class="form-label small text-dark">Amount in INR</label>
-                                        <input type="text" id="amountInInr" class="form-control form-control-lg custom-amount-input" value="44417" readonly>
+                                </div>
+                                <div class="tab-content p-3" id="transferTabsContent">
+                                    <!-- Send Money Tab -->
+                                    <div class="tab-pane fade show active" id="sendTabPane" role="tabpanel" aria-labelledby="send-tab">
+                                        <div class="custom-transfer-card">
+                                            <!-- Exchange rate -->
+                                            <div class="text-center mb-2">
+                                                <div class="badge bg-neutral text-dark py-1 px-2 rounded-5">
+                                                    <span id="exchangeRateText" class="small fw-semibold">1 USD = 88.07 INR</span>
+                                                </div>
+                                            </div>
+                                            <!-- Amount to be sent / Amount in INR -->
+                                            <div class="row g-2 mb-2">
+                                                <div class="col-6">
+                                                    <label class="form-label small text-dark">Amount to be Sent</label>
+                                                    <div class="position-relative">
+                                                        <input type="text" value="500" id="amountToSend" class="form-control form-control-lg custom-amount-input pe-5">
+                                                        <select id="sendCurrency" class="form-select custom-currency-select position-absolute top-50 end-0 translate-middle-y me-2" onchange="setQuoteCurrency(this.value);">
+                                                            <option value="USD" selected>USD</option>
+                                                            <option value="EUR">EUR</option>
+                                                            <option value="GBP">GBP</option>
+                                                            <option value="AUD">AUD</option>
+                                                            <option value="CAD">CAD</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-label small text-dark">Amount in INR</label>
+                                                    <input type="text" id="amountInInr" class="form-control form-control-lg custom-amount-input" value="44417" readonly>
+                                                </div>
+                                            </div>
+                                            <!-- Receiving amount -->
+                                            <div class="mb-2">
+                                                <label class="form-label small text-dark">Receiving amount</label>
+                                                <div class="position-relative">
+                                                    <input type="text" value="500" id="receivingAmount" class="form-control form-control-lg custom-amount-input pe-5">
+                                                    <span id="receiveCurrencyDisplay" class="badge bg-white border position-absolute top-50 end-0 translate-middle-y me-2 px-3 py-2 fw-semibold text-dark">USD</span>
+                                                </div>
+                                            </div>
+                                            <!-- Total amount and extras -->
+                                            <div class="p-3 bg-light rounded border mb-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="small text-muted">Total Amount</div>
+                                                    <div class="h4 m-0 fw-bold text-dark">₹ <span id="totalAmountValue">0</span></div>
+                                                </div>
+                                                <div class="d-flex align-items-center gap-2 mt-1 small text-muted">
+                                                    <span>⏱️</span>
+                                                    <span>Remittance orders are usually processed within 48 working hours.</span>
+                                                </div>
+                                            </div>
+                                            <!-- Action button -->
+                                            <button id="bookOrderBtn" class="btn cmn-btn w-100 py-3 fw-semibold">Book This Order</button>
+                                        </div>
+                                    </div>
+                                    <!-- Buy Forex Card Tab -->
+                                    <div class="tab-pane fade" id="cardTabPane" role="tabpanel" aria-labelledby="card-tab">
+                                        <div class="custom-transfer-card">
+                                            <div class="mb-2">
+                                                <label class="form-label small text-dark">City</label>
+                                                <input type="text" class="form-control form-control-lg custom-amount-input" id="cardCity" placeholder="Enter city">
+                                            </div>
+                                            <div class="row g-2 mb-2">
+                                                <div class="col-6">
+                                                    <label class="form-label small text-dark">Load Currency</label>
+                                                    <select id="cardCurrency" class="form-select form-select-lg custom-amount-input">
+                                                        <option value="USD" selected>USD</option>
+                                                        <option value="EUR">EUR</option>
+                                                        <option value="GBP">GBP</option>
+                                                        <option value="AUD">AUD</option>
+                                                        <option value="CAD">CAD</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-label small text-dark">Amount</label>
+                                                    <input type="text" id="cardAmount" class="form-control form-control-lg custom-amount-input" placeholder="e.g. 1000">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label small text-dark">Card Type</label>
+                                                <select id="cardType" class="form-select form-select-lg custom-amount-input">
+                                                    <option selected>Multi-Currency Forex Card</option>
+                                                    <option>Single Currency Card</option>
+                                                </select>
+                                            </div>
+                                            <button class="btn cmn-btn w-100 py-3 fw-semibold" id="buyForexCardBtn">Buy Forex Card</button>
+                                        </div>
                                     </div>
                                 </div>
-            
-                                <!-- Receiving amount -->
-                                <div class="mb-2">
-                                    <label class="form-label small text-dark">Receiving amount</label>
-                                    <div class="position-relative">
-                                        <input type="text" value="500" id="receivingAmount" class="form-control form-control-lg custom-amount-input pe-5">
-                                        <span id="receiveCurrencyDisplay" class="badge bg-white border position-absolute top-50 end-0 translate-middle-y me-2 px-3 py-2 fw-semibold text-dark">USD</span>
-                                    </div>
-                                </div>
-            
-                                <!-- Total amount and extras -->
-                                <div class="p-3 bg-light rounded border mb-3">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="small text-muted">Total Amount</div>
-                                        <div class="h4 m-0 fw-bold text-dark">₹ <span id="totalAmountValue">0</span></div>
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 mt-1 small text-muted">
-                                        <span>⏱️</span>
-                                        <span>Remittance orders are usually processed within 48 working hours.</span>
-                                    </div>
-                                </div>
-            
-                                <!-- Action button -->
-                                <button id="bookOrderBtn" class="btn cmn-btn w-100 py-3 fw-semibold">Book This Order</button>
                             </div>
                         </div>
                     </div>

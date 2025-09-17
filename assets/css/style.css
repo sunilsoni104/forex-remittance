@@ -3731,4 +3731,47 @@ label {
   .banner-section.business-account.integrations .overlay .banner-content {
     padding: 178px 0 150px;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+
+.tab-accent.nav-tabs .nav-link {
+  background-color: #f5f7fb;
+  border: 0;
+  color: #344054;
+  padding: .75rem 1rem;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+.tab-accent.nav-tabs .nav-link.active {
+  background-color: #1e6ed8;
+  color: #ffffff;
+}
+
+.tab-accent.nav-tabs .nav-link.active > * {
+  color: #fff !important;
+}
+
+.ticker-bar {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffd84d;
+  /* border-radius: .5rem; */
+}
+.ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: tickerScroll 30s linear infinite;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.ticker-bar:hover .ticker-track { animation-play-state: paused; }
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+.ticker-item {
+  margin-right: 2rem;
+  font-size: 14px;
+}
