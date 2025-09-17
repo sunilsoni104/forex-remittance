@@ -717,7 +717,7 @@ label {
   color: var(--head-alt-color);
 }
 .header-section .navbar {
-  padding: 12px 15px;
+  padding: 12px 4px;
 }
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .nav-link,
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .dropdown-item {
