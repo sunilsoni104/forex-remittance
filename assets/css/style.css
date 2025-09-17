@@ -52,11 +52,6 @@ body {
   top: 0 !important;
 }
 
-section,
-footer {
-  overflow-x: hidden;
-}
-
 h1,
 h2,
 h3,
@@ -295,7 +290,7 @@ li,
 label {
   margin: 0;
   font-family: var(--body-font);
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 400;
   color: var(--para-color);
   line-height: 20px;
@@ -318,12 +313,12 @@ label {
 
 .sub-title {
   color: var(--primary-color);
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .title {
   font-weight: 700;
-  margin-bottom: 22px;
+  margin-bottom: 10px;
 }
 
 .xxlr {
@@ -383,6 +378,10 @@ label {
   padding-top: 120px;
 }
 
+.pt-80 {
+  padding-top: 80px;
+}
+
 .pb-30{
   padding-bottom: 30px;
 }
@@ -390,6 +389,11 @@ label {
 .py-30 {
   padding-bottom: 30px;
   padding-top: 30px;
+}
+
+.py-80 {
+  padding-bottom: 80px;
+  padding-top: 80px;
 }
 
 @media (max-width: 991px) {
@@ -689,7 +693,7 @@ label {
   width: 100%;
   z-index: 999;
   background-color: var(--bs-white);
-  border-bottom: 1px solid #6c6ea6;
+  border-bottom: 1px solid #bbbbea;
 }
 .header-section.header-fixed {
   position: fixed;
@@ -713,7 +717,7 @@ label {
   color: var(--head-alt-color);
 }
 .header-section .navbar {
-  padding: 12px 15px;
+  padding: 12px 4px;
 }
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .nav-link,
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .dropdown-item {
@@ -735,7 +739,7 @@ label {
   color: var(--primary-color);
 }
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .nav-link.dropdown-toggle {
-  margin-right: 15px;
+  /* margin-right: 15px; */
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1552,7 +1556,7 @@ label {
   text-align: center;
   margin-bottom: 20px;
   border-radius: 20px;
-  padding: 40px 20px 33px;
+  padding: 35px 20px 25px;
   transition: 0.3s;
 }
 .global-payment .single-item:hover {
@@ -1560,7 +1564,27 @@ label {
   border-color: transparent;
 }
 .global-payment .single-item h5 {
-  margin: 21px 0 24px;
+  margin: 20px 0 10px;
+}
+.global-payment .row.cus-mar {
+  /* keep Bootstrap's flex row; allow wrapping and add only vertical gap */
+  align-items: stretch;
+  flex-wrap: wrap;
+  row-gap: 20px;
+}
+.global-payment .row.cus-mar > [class^="col-"],
+.global-payment .row.cus-mar > [class*=" col-"] {
+  display: flex;
+}
+.global-payment .single-item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.global-payment .single-item img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .global-payment.features {
   margin-top: 0;
@@ -1581,10 +1605,29 @@ label {
   box-shadow: 2px 3.464px 24px 0px rgba(106, 105, 194, 0.25);
   text-align: center;
   padding: 40px 15px 33px;
-  margin-bottom: 20px;
+}
+.our-solutions .row.cus-mar {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  row-gap: 20px;
+}
+.our-solutions .row.cus-mar > [class^="col-"],
+.our-solutions .row.cus-mar > [class*=" col-"] {
+  display: flex;
+}
+.our-solutions .single-item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.our-solutions .single-item img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .our-solutions .single-item h5 {
-  margin: 21px 0 24px;
+  margin: 20px 0 10px;
 }
 .our-solutions.business-model {
   background-image: url(../images/business-model-bg.png);
