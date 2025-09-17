@@ -52,11 +52,6 @@ body {
   top: 0 !important;
 }
 
-section,
-footer {
-  overflow-x: hidden;
-}
-
 h1,
 h2,
 h3,
@@ -323,7 +318,7 @@ label {
 
 .title {
   font-weight: 700;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .xxlr {
@@ -394,6 +389,11 @@ label {
 .py-30 {
   padding-bottom: 30px;
   padding-top: 30px;
+}
+
+.py-80 {
+  padding-bottom: 80px;
+  padding-top: 80px;
 }
 
 @media (max-width: 991px) {
@@ -1605,10 +1605,29 @@ label {
   box-shadow: 2px 3.464px 24px 0px rgba(106, 105, 194, 0.25);
   text-align: center;
   padding: 40px 15px 33px;
-  margin-bottom: 20px;
+}
+.our-solutions .row.cus-mar {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  row-gap: 20px;
+}
+.our-solutions .row.cus-mar > [class^="col-"],
+.our-solutions .row.cus-mar > [class*=" col-"] {
+  display: flex;
+}
+.our-solutions .single-item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.our-solutions .single-item img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .our-solutions .single-item h5 {
-  margin: 21px 0 24px;
+  margin: 20px 0 10px;
 }
 .our-solutions.business-model {
   background-image: url(../images/business-model-bg.png);
