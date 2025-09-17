@@ -5,3 +5,9 @@
 .fs-17 { font-size: 17px !important; }
 
 .fs-16 { font-size: 16px !important; }
+
+/* padding right */
+
+.pr-45 {
+  padding-right: 45px !important;
+}
