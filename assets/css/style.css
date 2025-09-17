@@ -871,6 +871,12 @@ label {
 .banner-section .overlay .banner-content .main-content .bottom-area .cmn-btn {
   margin-right: 20px;
 }
+.hero-banner-img {
+  margin-top: 15px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
 .banner-section .overlay .banner-content .send-money {
   border-radius: 10px;
   padding: 20px;
