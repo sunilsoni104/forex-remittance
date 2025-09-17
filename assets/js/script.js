@@ -195,7 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bookOrderBtn) {
         bookOrderBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            const city = (document.getElementById('citySelect')?.value) || '';
             const fromCur = baseCurrency;
             const toCur = quoteCurrency;
             const amountToSend = parseFloat((amountToSendInput?.value || '0').replace(/,/g, '')) || 0;
@@ -207,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Basic validations
             const errors = [];
-            if (!city) errors.push('Please select a city.');
             if (amountToSend <= 0) errors.push('Enter a valid Amount to be Sent.');
             if (receivingAmount <= 0) errors.push('Enter a valid Receiving amount.');
             if (fromCur === toCur && toCur !== 'INR') errors.push('Transfer From and To currencies cannot be same unless base is INR.');
@@ -218,7 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const payload = {
-                city,
                 fromCurrency: fromCur,
                 toCurrency: toCur,
                 amountToBeSent: { value: amountToSend, currency: toCur },
