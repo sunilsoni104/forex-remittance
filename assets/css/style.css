@@ -3836,3 +3836,9 @@ label {
   margin-right: 2rem;
   font-size: 14px;
 }
+
+.login-note{background:#fff2df;border:1px solid #ffe0b2;border-radius:.5rem}
+.login-note .login-link{color:#0b74e5;font-weight:700;text-decoration:none}
+.login-note .login-link:hover{text-decoration:underline}
+.login-note .note-icon{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#ffefbd;color:#0b74e5}
+.login-note .note-arrow{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#ececec;color:#6b7280}
