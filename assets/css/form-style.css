@@ -5,9 +5,9 @@
   }
   .custom-amount-input {
     font-weight: 400;
-    font-size: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    font-size: 12px;
+    /* padding-top: 5px; */
+    /* padding-bottom: 5px; */
     padding-right: 88px;
     /* background-color: #f8f9fa; */
     /* border-radius: 14px; */
@@ -41,10 +41,14 @@
   }
   /* compact inline select that sits at input end */
   .custom-currency-select {
-    width: 90px;
+    width: 70px;
     padding: 4px 8px;
     /* border-radius: 10px; */
+    border: none !important;
   }
+.custom-currency-select:focus {
+  border-color: none !important;
+}
   #receiveCurrencyDisplay{ min-width:72px; /* border-radius:10px; */ }
 
   .form-control:focus,
@@ -55,13 +59,13 @@
   /* Make form controls have darker borders */
   .form-control,
   .form-select {
-    border: 1px solid #6b7280 !important;
+    border: 1px solid #6b7280;
   }
 
   .form-control:focus,
   .form-select:focus {
     border-color: #374151 !important;
-    box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1) !important;
+    box-shadow: none;
   }
 
   /* Custom City Dropdown Styles */
@@ -74,13 +78,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    padding: 7px 15px;
     border: 1px solid #6b7280;
     border-radius: 8px;
     background-color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 15px;
     color: #374151;
   }
 
@@ -90,17 +93,19 @@
 
   .city-dropdown-trigger.active {
     border-color: #374151;
-    box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1);
+    /* box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1); */
   }
 
   .city-selected-text {
     flex: 1;
     text-align: left;
+    font-size: 12px;
   }
 
   .city-dropdown-arrow {
     transition: transform 0.3s ease;
     color: #6b7280;
+    font-size: 12px;
   }
 
   .city-dropdown-trigger.active .city-dropdown-arrow {
@@ -133,17 +138,17 @@
 
   .city-search-input {
     width: 100%;
-    padding: 8px 12px 8px 35px;
+    padding: 7px 12px 7px 35px;
     border: 1px solid #6b7280;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 12px;
     outline: none;
     transition: border-color 0.3s ease;
   }
 
   .city-search-input:focus {
     border-color: #374151;
-    box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1);
+    /* box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1); */
   }
 
   .city-search-icon {
@@ -206,11 +211,11 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 16px;
+    padding: 7px 15px;
     border: 1px solid #6b7280;
     border-radius: 8px;
     background-color: #f8f9fa;
-    font-size: 15px;
+    font-size: 12px !important;
     color: #374151;
   }
 
@@ -223,13 +228,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    padding: 7px 15px;
     border: 1px solid #6b7280;
     border-radius: 8px;
     background-color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 15px;
+    font-size: 12px;
     color: #374151;
   }
 
@@ -239,7 +244,7 @@
 
   .country-dropdown-trigger.active {
     border-color: #374151;
-    box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1);
+    /* box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1); */
   }
 
   .country-flag {
@@ -256,7 +261,7 @@
 
   .country-name {
     margin-left: 8px;
-    font-weight: 500;
+    /* font-weight: 500; */
   }
 
   .country-dropdown-arrow {
@@ -305,7 +310,7 @@
 
   .country-search-input:focus {
     border-color: #374151;
-    box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1);
+    /* box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1); */
   }
 
   .country-search-icon {

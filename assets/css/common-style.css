@@ -2,6 +2,12 @@
   background-color: rgba(22, 51, 0, 0.07843);
 }
 
+.fs-10 {
+  font-size: 10px !important;
+}
+.fs-12 {
+  font-size: 12px !important;
+}
 .fs-13 {
   font-size: 13px !important;
 }
@@ -29,6 +35,10 @@
 
 .pr-25 {
     padding-right: 25px !important;
+}
+
+.ml-15 {
+  margin-left: 15px !important;
 }
 
 .text-primary {
