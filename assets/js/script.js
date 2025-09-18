@@ -251,3 +251,233 @@ function setPayerActive() {
     payerRecipientBtn.classList.toggle('btn-light', payerIsSender);
     payerRecipientBtn.classList.toggle('btn-primary', !payerIsSender);
 }
+
+// Custom City Dropdown Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const cityDropdownTrigger = document.getElementById('cityDropdownTrigger');
+    const cityDropdownMenu = document.getElementById('cityDropdownMenu');
+    const citySearchInput = document.getElementById('citySearchInput');
+    const cityOptionsContainer = document.getElementById('cityOptionsContainer');
+    const cityOptions = cityOptionsContainer.querySelectorAll('.city-option');
+    const citySelectedText = cityDropdownTrigger.querySelector('.city-selected-text');
+    const hiddenInput = document.getElementById('sendCity');
+
+    // Toggle dropdown
+    cityDropdownTrigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isOpen = cityDropdownMenu.classList.contains('show');
+        
+        if (isOpen) {
+            closeDropdown();
+        } else {
+            openDropdown();
+        }
+    });
+
+    // Search functionality
+    citySearchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        
+        cityOptions.forEach(option => {
+            const cityName = option.textContent.toLowerCase();
+            if (cityName.includes(searchTerm)) {
+                option.classList.remove('hidden');
+            } else {
+                option.classList.add('hidden');
+            }
+        });
+    });
+
+    // City option selection
+    cityOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const cityValue = this.getAttribute('data-value');
+            const cityName = this.textContent;
+            
+            // Update selected text
+            citySelectedText.textContent = cityName;
+            
+            // Update hidden input
+            hiddenInput.value = cityValue;
+            
+            // Update visual state
+            cityOptions.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            // Close dropdown
+            closeDropdown();
+            
+            // Clear search
+            citySearchInput.value = '';
+            cityOptions.forEach(opt => opt.classList.remove('hidden'));
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!cityDropdownTrigger.contains(e.target) && !cityDropdownMenu.contains(e.target)) {
+            closeDropdown();
+        }
+    });
+
+    // Keyboard navigation
+    citySearchInput.addEventListener('keydown', function(e) {
+        const visibleOptions = Array.from(cityOptions).filter(opt => !opt.classList.contains('hidden'));
+        const currentIndex = visibleOptions.findIndex(opt => opt.classList.contains('selected'));
+        
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const nextIndex = currentIndex < visibleOptions.length - 1 ? currentIndex + 1 : 0;
+            updateSelection(visibleOptions, nextIndex);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prevIndex = currentIndex > 0 ? currentIndex - 1 : visibleOptions.length - 1;
+            updateSelection(visibleOptions, prevIndex);
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (currentIndex >= 0) {
+                visibleOptions[currentIndex].click();
+            }
+        } else if (e.key === 'Escape') {
+            closeDropdown();
+        }
+    });
+
+    function openDropdown() {
+        cityDropdownMenu.classList.add('show');
+        cityDropdownTrigger.classList.add('active');
+        citySearchInput.focus();
+    }
+
+    function closeDropdown() {
+        cityDropdownMenu.classList.remove('show');
+        cityDropdownTrigger.classList.remove('active');
+        citySearchInput.value = '';
+        cityOptions.forEach(opt => opt.classList.remove('hidden'));
+    }
+
+    function updateSelection(visibleOptions, index) {
+        visibleOptions.forEach(opt => opt.classList.remove('selected'));
+        if (visibleOptions[index]) {
+            visibleOptions[index].classList.add('selected');
+            visibleOptions[index].scrollIntoView({ block: 'nearest' });
+        }
+    }
+});
+
+// Country Dropdown Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const countryDropdownTrigger = document.getElementById('countryDropdownTrigger');
+    const countryDropdownMenu = document.getElementById('countryDropdownMenu');
+    const countrySearchInput = document.getElementById('countrySearchInput');
+    const countryOptionsContainer = document.getElementById('countryOptionsContainer');
+    const countryOptions = countryOptionsContainer.querySelectorAll('.country-option');
+    const selectedCountryFlag = document.getElementById('selectedCountryFlag');
+    const selectedCountryName = document.getElementById('selectedCountryName');
+    const hiddenInput = document.getElementById('transferToCountry');
+
+    // Toggle dropdown
+    countryDropdownTrigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isOpen = countryDropdownMenu.classList.contains('show');
+        
+        if (isOpen) {
+            closeCountryDropdown();
+        } else {
+            openCountryDropdown();
+        }
+    });
+
+    // Search functionality
+    countrySearchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        
+        countryOptions.forEach(option => {
+            const countryName = option.textContent.toLowerCase();
+            if (countryName.includes(searchTerm)) {
+                option.classList.remove('hidden');
+            } else {
+                option.classList.add('hidden');
+            }
+        });
+    });
+
+    // Country option selection
+    countryOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const countryValue = this.getAttribute('data-value');
+            const countryFlag = this.getAttribute('data-flag');
+            const countryName = this.getAttribute('data-name');
+            
+            // Update selected country display
+            selectedCountryFlag.src = `https://flagcdn.com/w20/${countryFlag}.png`;
+            selectedCountryFlag.alt = countryName;
+            selectedCountryName.textContent = countryName;
+            
+            // Update hidden input
+            hiddenInput.value = countryValue;
+            
+            // Update visual state
+            countryOptions.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            // Close dropdown
+            closeCountryDropdown();
+            
+            // Clear search
+            countrySearchInput.value = '';
+            countryOptions.forEach(opt => opt.classList.remove('hidden'));
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!countryDropdownTrigger.contains(e.target) && !countryDropdownMenu.contains(e.target)) {
+            closeCountryDropdown();
+        }
+    });
+
+    // Keyboard navigation
+    countrySearchInput.addEventListener('keydown', function(e) {
+        const visibleOptions = Array.from(countryOptions).filter(opt => !opt.classList.contains('hidden'));
+        const currentIndex = visibleOptions.findIndex(opt => opt.classList.contains('selected'));
+        
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const nextIndex = currentIndex < visibleOptions.length - 1 ? currentIndex + 1 : 0;
+            updateCountrySelection(visibleOptions, nextIndex);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prevIndex = currentIndex > 0 ? currentIndex - 1 : visibleOptions.length - 1;
+            updateCountrySelection(visibleOptions, prevIndex);
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (currentIndex >= 0) {
+                visibleOptions[currentIndex].click();
+            }
+        } else if (e.key === 'Escape') {
+            closeCountryDropdown();
+        }
+    });
+
+    function openCountryDropdown() {
+        countryDropdownMenu.classList.add('show');
+        countryDropdownTrigger.classList.add('active');
+        countrySearchInput.focus();
+    }
+
+    function closeCountryDropdown() {
+        countryDropdownMenu.classList.remove('show');
+        countryDropdownTrigger.classList.remove('active');
+        countrySearchInput.value = '';
+        countryOptions.forEach(opt => opt.classList.remove('hidden'));
+    }
+
+    function updateCountrySelection(visibleOptions, index) {
+        visibleOptions.forEach(opt => opt.classList.remove('selected'));
+        if (visibleOptions[index]) {
+            visibleOptions[index].classList.add('selected');
+            visibleOptions[index].scrollIntoView({ block: 'nearest' });
+        }
+    }
+});
