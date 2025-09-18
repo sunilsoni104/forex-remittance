@@ -9,7 +9,7 @@
   font-size: 12px !important;
 }
 .fs-13 {
-  font-size: 13px !important;
+  font-size: 12px !important;
 }
 .fs-14 {
   font-size: 14px !important;
@@ -44,3 +44,5 @@
 .text-primary {
     color: #2b4066 !important;
 }
+
+.top-n-65 {top: -65px !important;}
