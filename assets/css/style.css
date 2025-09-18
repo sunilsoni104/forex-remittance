@@ -846,7 +846,7 @@ label {
   animation: rippleAni 3s linear infinite;
 }
 .banner-section .overlay .shape-area .obj-3 {
-  left: 48%;
+  left: 40%;
   bottom: 12%;
   animation: ripple2Ani 5s linear infinite;
 }
@@ -2978,7 +2978,7 @@ label {
 }
 @media (max-width: 1399px) {
   .banner-section .overlay .banner-content .container .content-shape .obj-1 {
-    left: 45%;
+    left: 40%;
   }
   .blog-section .single-post .thumbnail img {
     max-width: 100%;
