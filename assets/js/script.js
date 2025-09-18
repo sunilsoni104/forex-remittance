@@ -481,3 +481,100 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+// =========================
+// Forex Tab (cardTabPane) JS
+// =========================
+document.addEventListener('DOMContentLoaded', () => {
+    // Elements
+    const amountToSendInputFx = document.getElementById('amountToSend-forex');
+    const amountInInrInputFx = document.getElementById('amountInInr-forex');
+    const sendCurrencySelectFx = document.getElementById('sendCurrency-forex');
+    const bookOrderBtnFx = document.getElementById('bookOrderBtn-forex');
+    const totalAmountValueFx = document.getElementById('totalAmountValue-forex');
+
+    // City dropdown (forex) removed
+    const cityDropdownTriggerFx = null;
+    const cityDropdownMenuFx = null;
+    const citySearchInputFx = null;
+    const cityOptionsContainerFx = null;
+    const hiddenCityFx = null;
+
+    // State
+    let quoteCurrencyFx = (sendCurrencySelectFx && sendCurrencySelectFx.value) || 'USD';
+    let latestRateFx = 88.0987; // fallback
+
+    // Helpers
+    function updateConversionFx() {
+        const amt = parseFloat((amountToSendInputFx?.value || '0').replace(/,/g, '')) || 0;
+        const inr = latestRateFx ? (amt * latestRateFx) : 0;
+        if (amountInInrInputFx) amountInInrInputFx.value = Math.round(inr).toString();
+        if (totalAmountValueFx) totalAmountValueFx.textContent = formatNumber(inr.toFixed(2));
+    }
+
+    async function fetchAndSetRateFx() {
+        try {
+            latestRateFx = await fetchRate(quoteCurrencyFx, 'INR');
+        } catch (e) {
+            console.error('FX rate fetch failed (forex tab), using fallback', e);
+        }
+        updateConversionFx();
+    }
+
+    function bindNumericInputFx(el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+            const raw = this.value.replace(/,/g, '');
+            if (raw === '' || isNaN(raw)) return updateConversionFx();
+            this.value = raw;
+            updateConversionFx();
+        });
+        el.addEventListener('blur', function () { updateConversionFx(); });
+    }
+
+    // Initialize inputs
+    bindNumericInputFx(amountToSendInputFx);
+    updateConversionFx();
+    fetchAndSetRateFx();
+
+    // Ensure forex select uses forex handler only (override inline onchange if present)
+    if (sendCurrencySelectFx) {
+        sendCurrencySelectFx.onchange = null;
+        sendCurrencySelectFx.addEventListener('change', () => {
+            quoteCurrencyFx = sendCurrencySelectFx.value;
+            fetchAndSetRateFx();
+        });
+    }
+
+    // Book button handler (forex)
+    if (bookOrderBtnFx) {
+        bookOrderBtnFx.addEventListener('click', (e) => {
+            e.preventDefault();
+            const amt = parseFloat((amountToSendInputFx?.value || '0').replace(/,/g, '')) || 0;
+            const inr = parseFloat((amountInInrInputFx?.value || '0').replace(/,/g, '')) || 0;
+            const totalInrFx = parseFloat((totalAmountValueFx?.textContent || '0').replace(/,/g, '')) || inr;
+
+            const errors = [];
+            if (amt <= 0) errors.push('Enter a valid Forex Amount.');
+            if (errors.length) {
+                alert(errors.join('\n'));
+                return;
+            }
+
+            const payload = {
+                tab: 'forexCard',
+                sendCurrency: quoteCurrencyFx,
+                amount: { value: amt, currency: quoteCurrencyFx },
+                amountInINR: { value: inr, currency: 'INR' },
+                rate: latestRateFx,
+                totals: { totalPayableInINR: totalInrFx },
+                city: '',
+                meta: { ts: new Date().toISOString() }
+            };
+            console.log('Forex booking payload', payload);
+            alert('Forex order booked successfully!\n\n' + JSON.stringify(payload, null, 2));
+        });
+    }
+
+    // City dropdown (forex) removed: no behavior to bind
+});
