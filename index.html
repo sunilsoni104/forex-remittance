@@ -818,7 +818,7 @@
                                                     <input type="text" class="form-control form-control-lg custom-amount-input" id="cardCity" placeholder="Enter city">
                                                 </div>
                                                 <!-- Quick lead capture -->
-                                                <div class="row g-2 mb-2">
+                                                <!-- <div class="row g-2 mb-2">
                                                     <div class="col-6">
                                                         <label class="form-label fs-14 text-dark" for="cardCurrency">Load Currency</label>
                                                         <select id="cardCurrency" class="form-select form-select-lg custom-amount-input">
@@ -833,7 +833,28 @@
                                                         <label class="form-label fs-14 text-dark" for="cardAmount">Amount</label>
                                                         <input type="text" id="cardAmount" class="form-control form-control-lg custom-amount-input" placeholder="e.g. 1000">
                                                     </div>
+                                                </div> -->
+                                                
+                                                <div class="row g-2 mb-2">
+                                                    <div class="col-6">
+                                                        <label class="form-label fs-10 text-dark text-uppercase fw-medium" for="forexAmount">Forex Amount</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" value="500" id="forexAmountToSend" class="form-control form-control-lg custom-amount-input pe-5">
+                                                            <select id="ForexsendCurrency" class="form-select custom-currency-select position-absolute top-50 end-0 translate-middle-y me-2" onchange="setQuoteCurrency(this.value);">
+                                                                <option value="USD" selected>USD</option>
+                                                                <option value="EUR">EUR</option>
+                                                                <option value="GBP">GBP</option>
+                                                                <option value="AUD">AUD</option>
+                                                                <option value="CAD">CAD</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label class="form-label fs-10 text-dark text-uppercase fw-medium" for="forexAmountInInr">Amount in INR</label>
+                                                        <input type="text" id="forexAmountInInr" class="form-control form-control-lg custom-amount-input" readonly>
+                                                    </div>
                                                 </div>
+
                                                 <div class="mb-3">
                                                     <label class="form-label fs-14 text-dark" for="cardType">Card Type</label>
                                                     <select id="cardType" class="form-select form-select-lg custom-amount-input">
