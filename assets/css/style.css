@@ -628,6 +628,12 @@ label {
   border: 1px solid var(--border-color);
   color: var(--para-color);
 }
+.cmn-btn:hover #totalAmountValue {
+  color: var(--para-color);
+}
+.cmn-btn:hover #totalAmountValue-forex {
+  color: var(--para-color);
+}
 .cmn-btn img, .cmn-btn i {
   margin-left: 10px;
 }
@@ -3839,5 +3845,5 @@ label {
 .login-note{background:#fff2df;border:1px solid #ffe0b2;border-radius:.5rem}
 .login-note .login-link{color:#0b74e5;font-weight: 700;font-family: Poppins-Bold, sans-serif;text-decoration:none;font-size: 13px;}
 .login-note .login-link:hover{text-decoration:underline}
-.login-note .note-icon{width: 26px;height: 25px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background: #0b74e5;color: #ffffff;}
-.login-note .note-arrow{width: 25px;height: 25px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background: #0b74e5;color: #eaeaea;}
+.login-note .note-icon{width: 26px;height: 25px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;/* background: #0b74e5; */color: #0b74e5;}
+.login-note .note-arrow{width: 23px;height: 23px;display:inline-flex;align-items:center;margin-right: 5px;justify-content:center;border-radius:50%;background: #0b74e5;color: #eaeaea;}
