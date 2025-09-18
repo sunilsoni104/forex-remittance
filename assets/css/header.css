@@ -37,7 +37,7 @@
 .utility-link {
     color: #ffffff;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 12px;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -111,7 +111,7 @@
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .nav-link {
     color: #333333;
     font-weight: 500;
-    font-size: 15px;
+    font-size: 14px;
     padding: 3px 18px;
     border-radius: 8px;
     transition: all 0.3s ease;

@@ -280,7 +280,7 @@ a {
   display: inline-block;
   color: var(--para-color);
   font-weight: 400;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 30px;
 }
 
@@ -728,7 +728,7 @@ label {
   color: var(--head-alt-color);
 }
 .header-section .navbar {
-  padding: 12px 0px;
+  padding: 8px 0px;
 }
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .nav-link,
 .header-section .navbar .navbar-collapse .navbar-nav .nav-item .dropdown-item {
@@ -854,7 +854,7 @@ label {
   top: 0;
 }
 .banner-section .overlay .banner-content {
-  padding: 40px 0 40px;
+  padding: 25px 0 40px;
 }
 .banner-section .overlay .banner-content .container {
   position: relative;
@@ -3837,7 +3837,7 @@ label {
 }
 
 .login-note{background:#fff2df;border:1px solid #ffe0b2;border-radius:.5rem}
-.login-note .login-link{color:#0b74e5;font-weight:700;text-decoration:none}
+.login-note .login-link{color:#0b74e5;font-weight: 700;font-family: Poppins-Bold, sans-serif;text-decoration:none;font-size: 13px;}
 .login-note .login-link:hover{text-decoration:underline}
-.login-note .note-icon{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#ffefbd;color:#0b74e5}
-.login-note .note-arrow{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#ececec;color:#6b7280}
+.login-note .note-icon{width: 26px;height: 25px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background: #0b74e5;color: #ffffff;}
+.login-note .note-arrow{width: 25px;height: 25px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background: #0b74e5;color: #eaeaea;}
