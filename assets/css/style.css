@@ -3828,7 +3828,7 @@ label {
   white-space: nowrap;
   padding-left: 100%;
   animation: tickerScroll 30s linear infinite;
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #0f172a;
 }
 
