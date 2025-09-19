@@ -483,6 +483,56 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // =========================
+// Tab Content Switching
+// =========================
+document.addEventListener('DOMContentLoaded', () => {
+    // Tab switching for hero content
+    const sendTab = document.getElementById('send-tab');
+    const cardTab = document.getElementById('card-tab');
+    const subTitle = document.querySelector('.sub-title');
+    const mainTitle = document.querySelector('.title');
+    const description = document.querySelector('.top-area p');
+    const heroImage = document.querySelector('.hero-banner-img');
+
+    // Tab 1 content (Send Money)
+    const sendTabContent = {
+        subTitle: 'Simple. Secure. Fast.',
+        title: 'Pay Anyone, Anywhere',
+        description: 'Send and receive money across the world in just a few clicks. Fast, secure, and reliable remittance solutions tailored for your needs.',
+        image: 'assets/images/banner-1.png'
+    };
+
+    // Tab 2 content (Buy Forex Card)
+    const cardTabContent = {
+        subTitle: 'Travel. Spend. Save.',
+        title: 'Buy Forex Card Online',
+        description: 'Get the best exchange rates for your international travel. Load multiple currencies, spend anywhere, and enjoy zero markup fees with our forex cards.',
+        image: 'assets/images/banner-2.png'
+    };
+
+    // Function to update hero content
+    function updateHeroContent(content) {
+        if (subTitle) subTitle.textContent = content.subTitle;
+        if (mainTitle) mainTitle.textContent = content.title;
+        if (description) description.textContent = content.description;
+        if (heroImage) heroImage.src = content.image;
+    }
+
+    // Tab click handlers
+    if (sendTab) {
+        sendTab.addEventListener('click', () => {
+            updateHeroContent(sendTabContent);
+        });
+    }
+
+    if (cardTab) {
+        cardTab.addEventListener('click', () => {
+            updateHeroContent(cardTabContent);
+        });
+    }
+});
+
+// =========================
 // Forex Tab (cardTabPane) JS
 // =========================
 document.addEventListener('DOMContentLoaded', () => {
@@ -492,13 +542,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendCurrencySelectFx = document.getElementById('sendCurrency-forex');
     const bookOrderBtnFx = document.getElementById('bookOrderBtn-forex');
     const totalAmountValueFx = document.getElementById('totalAmountValue-forex');
-
-    // City dropdown (forex) removed
-    const cityDropdownTriggerFx = null;
-    const cityDropdownMenuFx = null;
-    const citySearchInputFx = null;
-    const cityOptionsContainerFx = null;
-    const hiddenCityFx = null;
 
     // State
     let quoteCurrencyFx = (sendCurrencySelectFx && sendCurrencySelectFx.value) || 'USD';

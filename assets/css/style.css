@@ -833,7 +833,7 @@ label {
   background-color: #f2f3f9;
   background-image: url(../images/banner-map.png);
   background-repeat: no-repeat;
-  background-position: top 100px right;
+  background-position: top 0px right;
   position: relative;
   background-size: auto;
 }
@@ -878,9 +878,12 @@ label {
 }
 .hero-banner-img {
   margin-top: 15px;
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
   border-radius: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .banner-section .overlay .banner-content .send-money {
   border-radius: 10px;
